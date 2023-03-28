@@ -6,7 +6,6 @@ class CreatePatients < ActiveRecord::Migration[7.0]
       t.text :password_digest
       t.datetime :date_of_birth
       t.integer :contact_information
-      t.belongs_to :medical_history, null: false, foreign_key: true
 
       t.timestamps
     end

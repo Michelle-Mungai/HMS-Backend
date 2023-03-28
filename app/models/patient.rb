@@ -1,3 +1,3 @@
 class Patient < ApplicationRecord
-  belongs_to :medical_history
+  has_one :medical_record
 end
