@@ -34,8 +34,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_074803) do
     t.string "image_url"
     t.string "bio"
     t.string "options"
+
+  create_table "medical_records", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.text "medical_history"
+    t.text "diagnoses"
+    t.text "treatment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_medical_records_on_patient_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.text "password_digest"
+    t.datetime "date_of_birth"
+    t.text "contact_information"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+
+
+  add_foreign_key "medical_records", "patients"
 end
