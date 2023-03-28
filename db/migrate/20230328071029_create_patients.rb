@@ -5,7 +5,7 @@ class CreatePatients < ActiveRecord::Migration[7.0]
       t.string :email
       t.text :password_digest
       t.datetime :date_of_birth
-      t.integer :contact_information
+      t.text :contact_information
 
       t.timestamps
     end
