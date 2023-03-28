@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_072314) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_28_074803) do
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "appointment_date"
+    t.string "reason_for_visit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.integer "phone_number"
+    t.string "medical_specialties"
+    t.integer "medical_license_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.string "image_url"
+    t.string "bio"
+    t.string "options"
+
   create_table "medical_records", force: :cascade do |t|
     t.integer "patient_id", null: false
     t.text "medical_history"
@@ -30,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_072314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
 
   add_foreign_key "medical_records", "patients"
 end
