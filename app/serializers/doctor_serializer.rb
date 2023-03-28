@@ -1,3 +1,3 @@
 class DoctorSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes  :name, :phone_number, :medical_specialties, :medical_license_number
 end

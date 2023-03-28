@@ -2,7 +2,7 @@ class DoctorsController < ApplicationController
    # view doctors
     def index
         doctors= Doctor.all 
-        render json: doctors
+        render json: doctors, each_serializer: DoctorSerializer
     end
 
     #creating a new doctor
@@ -10,7 +10,7 @@ class DoctorsController < ApplicationController
         doctor = Doctor.create(doctor_params)
       
         if doctor.valid?
-          render json: doctor, status: :created
+          render json: doctor, serializer: DoctorSerializer, status: :created
         else
           render json: { errors: doctor.errors.full_messages }, status: :unprocessable_entity
         end
