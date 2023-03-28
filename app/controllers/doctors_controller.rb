@@ -16,7 +16,7 @@ class DoctorsController < ApplicationController
         end
       end
     #find a given Doctor object
-    
+
       def show
         doctor = Doctor.find_by(id: params[:id])
         
@@ -26,9 +26,25 @@ class DoctorsController < ApplicationController
           render json: { error: "Doctor not found" }, status: :not_found
         end
       end
+
+      #Update a given Doctor
+
+      def update
+        doctor = Doctor.find_by(id: params[:id])
       
-      
-      
+        if doctor
+          if doctor.update(doctor_params)
+            render json: doctor, status: :ok
+          else
+            render json: { errors: doctor.errors.full_messages }, status: :unprocessable_entity
+          end
+        else
+          render json: { error: "Doctor not found" }, status: :not_found
+        end
+      end
+
+          
+           
       private
       
       def doctor_params
