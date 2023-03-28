@@ -32,16 +32,26 @@ class DoctorsController < ApplicationController
       def update
         doctor = Doctor.find_by(id: params[:id])
       
+        if doctor.update(doctor_params)
+          render json: { message: "Doctor successfully updated", doctor: doctor }, status: :ok
+        else
+          render json: { errors: doctor.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+      
+
+      #delete method
+      def destroy
+        doctor = Doctor.find_by(id: params[:id])
+      
         if doctor
-          if doctor.update(doctor_params)
-            render json: doctor, status: :ok
-          else
-            render json: { errors: doctor.errors.full_messages }, status: :unprocessable_entity
-          end
+          doctor.destroy
+          render json: { message: "Doctor successfully destroyed" }, status: :ok
         else
           render json: { error: "Doctor not found" }, status: :not_found
         end
       end
+      
 
           
            
