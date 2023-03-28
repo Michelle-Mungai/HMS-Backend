@@ -15,6 +15,19 @@ class DoctorsController < ApplicationController
           render json: { errors: doctor.errors.full_messages }, status: :unprocessable_entity
         end
       end
+    #find a given Doctor object
+    
+      def show
+        doctor = Doctor.find_by(id: params[:id])
+        
+        if doctor.present?
+          render json: doctor, serializer: DoctorSerializer
+        else
+          render json: { error: "Doctor not found" }, status: :not_found
+        end
+      end
+      
+      
       
       private
       
