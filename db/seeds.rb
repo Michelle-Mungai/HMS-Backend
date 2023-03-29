@@ -1,33 +1,49 @@
-
-User.create(username: "johndoe", email: "johndoe@example.com", password: "password123", image_url: "https://example.com/johndoe.png", bio: "I'm a software engineer who loves to code!", created_at: Time.now, updated_at: Time.now)
-
-User.create(username: "janedoe", email: "janedoe@example.com", password: "password123", image_url: "https://example.com/janedoe.png", bio: "I'm a designer who loves to create beautiful things!", created_at: Time.now, updated_at: Time.now)
-
-User.create(username: "bobsmith", email: "bobsmith@example.com", password: "password123", image_url: "https://example.com/bobsmith.png", bio: "I'm a writer who loves to tell stories!", created_at: Time.now, updated_at: Time.now)
-
-
-#doctors info
-
-Doctor.create(name: "Dr. John Doe", phone_number: 5551234, medical_specialties: "Cardiology, Internal Medicine", medical_license_number: 123456)
-Doctor.create(name: "Dr. Jane Smith", phone_number: 5554321, medical_specialties: "Pediatrics, Family Medicine", medical_license_number: 654321)
-Doctor.create(name: "Dr. Michael Lee", phone_number: 5559876, medical_specialties: "Dermatology, Oncology", medical_license_number: 789012)
-Doctor.create(name: "Dr. Elizabeth Chen", phone_number: 5556789, medical_specialties: "Neurology, Psychiatry", medical_license_number: 345678)
-Doctor.create(name: "Dr. William Brown", phone_number: 5552345, medical_specialties: "Orthopedics, Sports Medicine", medical_license_number: 901234)
-
 puts "Destroying previous data"
+User.destroy_all
+Doctor.destroy_all
+Appointment.destroy_all
 Patient.destroy_all
 MedicalRecord.destroy_all
 
 puts "Creating seed data"
-10.times do 
-    Patient.create(
+15.times do 
+    User.create(
         username: Faker::Name.unique.name,
         email: Faker::Internet.email,
         password: Passgen::generate(:length => 20),
+        bio: Faker::Quote.famous_last_words,
+        image_url: "https://example.com/johndoe.png",
+        options: 1
+    )
+end
+
+
+# doctors info
+
+Doctor.create(name: "Dr. John Doe", phone_number: 5551234, medical_specialties: "Cardiology, Internal Medicine", medical_license_number: 123456, user_id: 1)
+Doctor.create(name: "Dr. Jane Smith", phone_number: 5554321, medical_specialties: "Pediatrics, Family Medicine", medical_license_number: 654321, user_id: 2)
+Doctor.create(name: "Dr. Michael Lee", phone_number: 5559876, medical_specialties: "Dermatology, Oncology", medical_license_number: 789012, user_id: 3)
+Doctor.create(name: "Dr. Elizabeth Chen", phone_number: 5556789, medical_specialties: "Neurology, Psychiatry", medical_license_number: 345678, user_id: 4)
+Doctor.create(name: "Dr. William Brown", phone_number: 5552345, medical_specialties: "Orthopedics, Sports Medicine", medical_license_number: 901234, user_id: 5)
+
+10.times do 
+    Patient.create(
+        name: Faker::Name.unique.name,
         date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 100),
-        contact_information: Faker::PhoneNumber.phone_number_with_country_code
+        contact_information: Faker::PhoneNumber.phone_number_with_country_code,
+        user_id: rand(6..15)
     )
 end 
+
+10.times do 
+    Appointment.create(
+        appointment_date: Faker::Time.between(from: 2.years.ago, to: 2.years.since),
+        reason_for_visit: "Illness",
+        patient_id: rand(1..10),
+        doctor_id: rand(1..5)
+    )
+end
+
 
 MedicalRecord.create(patient_id: 1, medical_history: "On 9th September 2021 the patient complained of the following: a persistent cough that was getting worse, coughing up blood or rust-colored sputum (spit or phlegm), chest pain that worsened with deep breathing, coughing, or laughing and hoarseness.", diagnoses: "Small cell lung cancer ", treatment: "The patient was to be treated wit scheduled chemotherapy sessions and advised to abstain from smoking cigarettes and to take up exercise and a healthy diet.")
 MedicalRecord.create(patient_id: 2, medical_history: "On 12th February 2021, the patient was admiited with the following symptoms:  high fever, shaking chills, and flu-like illness", diagnoses: "Malaria", treatment: " The patient was given a Artemisinin-based combination therapies (ACTs) drug to combat the illness.")
