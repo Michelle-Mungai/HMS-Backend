@@ -10,5 +10,7 @@ class Patient < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :contact_information, presence: true
   
+  has many :appointments
+  has many :doctors, through: :appointments
   has_one :medical_record
 end
