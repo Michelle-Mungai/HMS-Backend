@@ -10,26 +10,28 @@ class MedicalRecordsController < ApplicationController
 
   # GET /medical_records/1
   def show
-    render json: @medical_record
+    medical_record = MedicalRecord
   end
 
   # POST /medical_records
   def create
-    @medical_record = MedicalRecord.new(medical_record_params)
+    medical_record = MedicalRecord.create(medical_record_params)
 
-    if @medical_record.save
-      render json: @medical_record, status: :created, location: @medical_record
+    if medical_record.valid?
+      render json: medical_record, status: :created
     else
-      render json: @medical_record.errors, status: :unprocessable_entity
+      render json: { message: medical_record.errors }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /medical_records/1
   def update
-    if @medical_record.update(medical_record_params)
-      render json: @medical_record
+    medical_record = MedicalRecord.find(params[:id])
+    medical_record.update(medical_record_params)
+    if medical_record.valid?
+      render json: medical_record, status: :ok
     else
-      render json: @medical_record.errors, status: :unprocessable_entity
+      render json: { message: medical_record.errors }, status: :unprocessable_entity
     end
   end
 

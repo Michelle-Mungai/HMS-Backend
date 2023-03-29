@@ -1,16 +1,27 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: %i[ show update destroy ]
 
+  def create
+    patient = Patient.create(patient_params)
+    if patient.valid?
+        session[:patient_id] = patient.id
+        render json: patient
+    else
+        render json: {message: patient.errors}, status: :unprocessable_entity
+    end
+  end
+
   # GET /patients
   def index
-    @patients = Patient.all
+    patients = Patient.all
 
-    render json: @patients
+    render json: patients
   end
 
   # GET /patients/1
   def show
-    render json: @patient
+    patient = Patient.includes(:doctors).find(params[:id])
+    render json: patient, include: :doctors
   end
 
   # POST /patients
@@ -26,10 +37,12 @@ class PatientsController < ApplicationController
 
   # PATCH/PUT /patients/1
   def update
-    if @patient.update(patient_params)
-      render json: @patient
+    patient = Patient.find(params[:id])
+    patient.update(patient_params)
+    if patient.valid?
+      render json: patient, status: :created
     else
-      render json: @patient.errors, status: :unprocessable_entity
+      render json: { message: patient.errors }, status: :unprocessable_entity
     end
   end
 
@@ -39,13 +52,9 @@ class PatientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_patient
-      @patient = Patient.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.require(:patient).permit(:username, :email, :password_digest, :date_of_birth, :contact_information, :medical_history_id)
+      params.require(:patient).permit(:username, :email, :password, :date_of_birth, :contact_information)
     end
 end
