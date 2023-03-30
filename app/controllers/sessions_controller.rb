@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
       else
         render json: { error: "Invalid username or password" }, status: :unauthorized
       end
+    end
+
 
     def destroy
         return render json: {errors: ["User not found", "kindly log in"]}, status: :unauthorized unless session.include? :user_id
@@ -15,4 +17,3 @@ class SessionsController < ApplicationController
         head:no_content
     end
   end
-  
