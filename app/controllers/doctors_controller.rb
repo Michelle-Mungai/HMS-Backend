@@ -11,6 +11,20 @@ class DoctorsController < ApplicationController
      render json: @medical_record
    end
 
+   def create
+    @doctor= current_user.doctors.create(doctor_params)
+    if @doctor.valid?
+        render json: @doctor
+    else
+        render json: {message: @doctor.errors}, status: :unprocessable_entity
+    end
+  end
+
+  def index
+    doctors = Doctor.all
+    render json: doctors
+  end
+
    #find a given Doctor object
     def show
       @doctor = current_user.doctors
