@@ -1,5 +1,6 @@
 class MedicalRecordsController < ApplicationController 
 
+
   # PATCH/PUT /medical_records/1
   def update
     medical_record = MedicalRecord.find(params[:id])
@@ -12,7 +13,6 @@ class MedicalRecordsController < ApplicationController
   end
 
   private 
-   
 
     # Only allow a list of trusted parameters through.
     def medical_record_params

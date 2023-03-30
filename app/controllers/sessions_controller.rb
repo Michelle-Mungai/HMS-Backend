@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-   
-
 
     def create
       user = User.find_by(username: params[:username])
@@ -10,11 +8,11 @@ class SessionsController < ApplicationController
       else
         render json: { error: "Invalid username or password" }, status: :unauthorized
       end
-    end
-  
+
     def destroy
-      session.delete :user_id
-      render json: { message: "Goodbye, see you soon!" }
+        return render json: {errors: ["User not found", "kindly log in"]}, status: :unauthorized unless session.include? :user_id
+        session.delete :user_id
+        head:no_content
     end
   end
   

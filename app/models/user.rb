@@ -10,4 +10,6 @@ class User < ApplicationRecord
     validates :email, {
         presence: true
     }
+    has_many :doctors
+    has_many :patients
 end

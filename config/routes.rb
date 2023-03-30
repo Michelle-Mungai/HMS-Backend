@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  
   resources :doctors
-  resources :users  
+  resources :users
   resources :medical_records
   # resources :patients
   
@@ -17,5 +16,7 @@ Rails.application.routes.draw do
   get "/activeuser", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  
+  get '/doc', to: 'doctors#show'
+  get '/pat', to: 'patients#show'
 end
+

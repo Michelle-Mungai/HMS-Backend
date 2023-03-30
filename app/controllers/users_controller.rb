@@ -1,28 +1,26 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorized, only: :create
 
     def create
-      user = User.create(user_params)
-      if user.valid?
-        session[:user_id] = user.id
-        render json: { message: "Account created successfully" }, status: :created
-      else
-        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-      end
+        user = User.create(user_params)
+        if user.valid?
+            session[:user_id] = user.id
+            render json: user
+        else
+            render json: {message: "Unsucsessful"}, status: :unprocessable_entity
+        end
     end
-  
+
     def show
-      if @current_user
-        render json: { username: @current_user.username, email: @current_user.email, name: @current_user.name }
-      else
-        render json: { error: "No active user" }, status: :unauthorized
-      end
+        user  = User.find_by(id: session[:user_id])
+        if user
+            render json: user
+        else
+            render json: {errors: "You are not logged in"}, status: :unauthorized
+        end
     end
-  
-    private
-  
+
     def user_params
-      params.permit(:username, :email, :password, :options, :name)
+        params.permit(:username, :email, :password )
     end
-  end
-  
+end
+
