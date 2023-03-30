@@ -1,21 +1,19 @@
 class PatientsController < ApplicationController
-
+ 
   #Creates a new patient
   def create
     @patient= current_user.patients.create(patient_params)
     if @patient.valid?
         render json: @patient
     else
-        render json: {message: patient.errors}, status: :unprocessable_entity
+        render json: {message: @patient.errors}, status: :unprocessable_entity
     end
   end
-
   # GET /patients
   def index
     patients = Patient.all
     render json: patients
   end
-
   # GET /patients/1
   def show
     @patient = current_user.patients
@@ -41,11 +39,10 @@ class PatientsController < ApplicationController
     render json: { message: "You have successfully quit the application"}
   end
 
-  
   private
-
     # Only allow a list of trusted parameters through.
     def patient_params
       params.require(:patient).permit(:name, :date_of_birth, :contact_information)
+
     end
 end

@@ -10,8 +10,10 @@ class AppointmentsController < ApplicationController
           render json: {message: @appointment.errors}, status: :unprocessable_entity
         end
       end
-      
+
+    
       private
+  
       def appointment_params
         params.require(:appointment).permit(:appointment_date,:reason_for_visit)
       end
