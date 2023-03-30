@@ -6,18 +6,21 @@ Patient.destroy_all
 MedicalRecord.destroy_all
 
 puts "Creating seed data"
-15.times do 
-    User.create(
-        username: Faker::Name.unique.name,
-        email: Faker::Internet.email,
-        password: Passgen::generate(:length => 20),
-        bio: Faker::Quote.famous_last_words,
-        image_url: "https://example.com/johndoe.png",
-        options: 1
-    )
-end
-
-
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 0)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 0)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 0)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 0)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 0)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
+User.create( username: Faker::Name.unique.name, email: Faker::Internet.email, password: "abcd", bio: Faker::Quote.famous_last_words, image_url: "https://example.com/johndoe.png", options: 1)
 # doctors info
 
 Doctor.create(name: "Dr. John Doe", phone_number: 5551234, medical_specialties: "Cardiology, Internal Medicine", medical_license_number: 123456, user_id: 1)

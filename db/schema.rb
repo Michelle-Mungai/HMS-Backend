@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_074803) do
     t.text "password_digest", null: false
     t.string "image_url"
     t.text "bio"
-    t.integer "options", default: 0, null: false
+    t.integer "options", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

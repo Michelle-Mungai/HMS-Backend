@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.text :password_digest, null: false
       t.string :image_url
       t.text :bio
-      t.integer :options, null: false, default: 0
+      t.integer :options, null: false, default: 1
 
       t.timestamps
     end
