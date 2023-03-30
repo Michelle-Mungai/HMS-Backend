@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   put "/patients/:patient_id/appointments/:id", to: 'appointments#update'
   
   post "/signup", to: "users#create"
-  get "/me", to: "users#show"
+  get "/activeuser", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   

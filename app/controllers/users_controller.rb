@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    # skip_before_action :authorized, only: :create
+
     def create
       user = User.create(user_params)
       if user.valid?
@@ -10,13 +12,17 @@ class UsersController < ApplicationController
     end
   
     def show
-      render json: @current_user
+      if @current_user
+        render json: { username: @current_user.username, email: @current_user.email, name: @current_user.name }
+      else
+        render json: { error: "No active user" }, status: :unauthorized
+      end
     end
   
     private
   
     def user_params
-      params.permit(:username, :email, :password, :options)
+      params.permit(:username, :email, :password, :options, :name)
     end
   end
   
