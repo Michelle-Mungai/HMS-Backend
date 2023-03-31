@@ -1,7 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :authorize?
 
-
   # display all appointment
    def patient_appointments
      @appointments = Patient.find(params[:patient_id]).appointments
@@ -27,6 +26,7 @@ class DoctorsController < ApplicationController
     doctors = Doctor.all
     render json: doctors
   end
+
 
    #find a given Doctor object
     def show
