@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/doc', to: 'doctors#show'
   get '/pat', to: 'patients#show'
+  post 'patients/:patient_id/doctors/:doctor_id/appointments', to: 'appointments#create_appointment'
 end
