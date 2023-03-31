@@ -33,6 +33,12 @@ class DoctorsController < ApplicationController
       @doctor = current_user.doctors
       render json: @doctor
     end
+
+  private
+
+  def doctor_params
+    params.permit(:name, :medical_license_number, :medical_specialties)
+  end
     
  end
  
