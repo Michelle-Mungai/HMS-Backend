@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   get '/doc', to: 'doctors#show'
   get '/pat', to: 'patients#show'
   post 'patients/:patient_id/doctors/:doctor_id/appointments', to: 'appointments#create_appointment'
-  get '/password_resets/new', to: 'password_resets#new'
-  post '/password_resets', to: 'password_resets#create'
-  get '/password_resets/edit', to: 'password_resets#edit'
-  patch '/password_resets', to: 'password_resets#update'
+  # get '/password_reset/new', to: 'password_reset#new'
+  # post '/password_reset', to: 'password_reset#create'
+  # get '/password_reset/edit', to: 'password_reset#edit'
+  # patch '/password_reset', to: 'password_reset#update'
 end
 
