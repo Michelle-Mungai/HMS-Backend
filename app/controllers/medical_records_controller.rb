@@ -1,4 +1,5 @@
-class MedicalRecordsController < ApplicationController
+class MedicalRecordsController < ApplicationController 
+
 
   # PATCH/PUT /medical_records/1
   def update
@@ -11,7 +12,7 @@ class MedicalRecordsController < ApplicationController
     end
   end
 
-  private
+  private 
 
     # Only allow a list of trusted parameters through.
     def medical_record_params

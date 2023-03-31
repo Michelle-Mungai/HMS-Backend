@@ -4,6 +4,7 @@ class CreatePatients < ActiveRecord::Migration[7.0]
       t.string :name
       t.datetime :date_of_birth
       t.text :contact_information
+      
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

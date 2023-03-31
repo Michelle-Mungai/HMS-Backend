@@ -63,6 +63,8 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.active_record.sqlite3_production_warning = false
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
