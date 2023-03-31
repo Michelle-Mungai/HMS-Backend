@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :doctors
   resources :users
   resources :medical_records
-  # resources :patients
+  resources :patients
   
-   
-  
-  
-
   get "/patients/:patient_id/appointments", to: 'doctors#patient_appointments'
   get "/patients/:patient_id/medical_record", to: 'doctors#patient_medical_record'
   put "/patients/:patient_id/appointments/:id", to: 'appointments#update'
@@ -18,5 +15,10 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get '/doc', to: 'doctors#show'
   get '/pat', to: 'patients#show'
+  post 'patients/:patient_id/doctors/:doctor_id/appointments', to: 'appointments#create_appointment'
+  get '/password_resets/new', to: 'password_resets#new'
+  post '/password_resets', to: 'password_resets#create'
+  get '/password_resets/edit', to: 'password_resets#edit'
+  patch '/password_resets', to: 'password_resets#update'
 end
 
