@@ -5,7 +5,7 @@ class PasswordResetController < ApplicationController
         if user
           user.generate_password_reset_token
           UserMailer.password_reset(user).deliver_now
-          render json: { message: "I nstructions on password reset have been sent to your email"}, status: 200
+          render json: { success: true }, status: 200
         else
           render json: { message: "Email not found"}, status: :not_found
         end

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :authorize?
 
     def create
         user = User.find_by(username: params[:username])
@@ -13,6 +14,6 @@ class SessionsController < ApplicationController
     def destroy
         return render json: {errors: ["User not found", "kindly log in"]}, status: :unauthorized unless session.include? :user_id
         session.delete :user_id
-        head:no_content
+        render json: { message: "Goodbye!"}
     end
 end

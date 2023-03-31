@@ -1,4 +1,7 @@
 class DoctorsController < ApplicationController
+  before_action :authorize?
+
+
   # display all appointment
    def patient_appointments
      @appointments = Patient.find(params[:patient_id]).appointments
