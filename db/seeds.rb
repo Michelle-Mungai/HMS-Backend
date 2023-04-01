@@ -28,6 +28,7 @@ Doctor.create(name: "Dr. Jane Smith", phone_number: 5554321, medical_specialties
 Doctor.create(name: "Dr. Michael Lee", phone_number: 5559876, medical_specialties: "Dermatology, Oncology", medical_license_number: 789012, user_id: 3)
 Doctor.create(name: "Dr. Elizabeth Chen", phone_number: 5556789, medical_specialties: "Neurology, Psychiatry", medical_license_number: 345678, user_id: 4)
 Doctor.create(name: "Dr. William Brown", phone_number: 5552345, medical_specialties: "Orthopedics, Sports Medicine", medical_license_number: 901234, user_id: 5)
+
 10.times do
     Patient.create(
         name: Faker::Name.unique.name,
@@ -36,6 +37,7 @@ Doctor.create(name: "Dr. William Brown", phone_number: 5552345, medical_specialt
         user_id: rand(6..15)
     )
 end
+
 10.times do
     Appointment.create(
         appointment_date: Faker::Time.between(from: 2.years.ago, to: 2.years.since),
@@ -44,6 +46,7 @@ end
         doctor_id: rand(1..5)
     )
 end
+
 MedicalRecord.create(patient_id: 1, medical_history: "On 9th September 2021 the patient complained of the following: a persistent cough that was getting worse, coughing up blood or rust-colored sputum (spit or phlegm), chest pain that worsened with deep breathing, coughing, or laughing and hoarseness.", diagnoses: "Small cell lung cancer ", treatment: "The patient was to be treated wit scheduled chemotherapy sessions and advised to abstain from smoking cigarettes and to take up exercise and a healthy diet.")
 MedicalRecord.create(patient_id: 2, medical_history: "On 12th February 2021, the patient was admiited with the following symptoms:  high fever, shaking chills, and flu-like illness", diagnoses: "Malaria", treatment: " The patient was given a Artemisinin-based combination therapies (ACTs) drug to combat the illness.")
 MedicalRecord.create(patient_id: 3, medical_history: "On 8th June 2021, the patient was observed to have the following symptoms: jaw cramping.sudden, involuntary muscle spasms — often in the stomach, painful muscle stiffness all over the body and trouble swallowing food.", diagnoses: "Tetanus", treatment: " The patient was administered Antitoxins to prevent further nerve damage,a sedative to control muscle spasms and an antibiotic to help fight the disease.The patient was also scheduled regular appointments every three months to check their recovery. ")
