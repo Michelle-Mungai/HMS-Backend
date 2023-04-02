@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :authorize?
+  # before_action :authorize?
 
   #Creates a new patient
   def create
