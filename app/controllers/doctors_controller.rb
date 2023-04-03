@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
-  # before_action :authorize?
+
+  #  before_action :authorize?
 
   # display all appointment
    def patient_appointments
