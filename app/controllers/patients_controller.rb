@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :authorize?
+  # before_action :authorize?
 
   #Creates a new patient
   def create
@@ -17,8 +17,8 @@ class PatientsController < ApplicationController
   end
   # GET /patients/1
   def show
-    @patient = current_user.patients
-    render json: @patient
+    patient = Patient.find(params[:id])
+    render json: patient
   end
 
 
