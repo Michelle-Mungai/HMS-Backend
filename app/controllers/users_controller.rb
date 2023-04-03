@@ -27,6 +27,7 @@ class UsersController < ApplicationController
             render json: user
         else
             render json: { message: user.errors }, status: :unprocessable_entity
+        end
     end
 
     # def generate_password_reset_token
