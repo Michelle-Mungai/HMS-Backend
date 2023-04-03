@@ -1,6 +1,8 @@
 # HOSPITAL MANAGEMENT PROJECT
 This project is a ruby on rails REST API to fecth doctors, patients and their appointments.
 
+It is consumed by a react app found in this repository https://github.com/Michelle-Mungai/Phase-4-HMS
+
 # Project Description
 
 This project is a Ruby on Rails RESTful API that manages the data for a medical appointment booking system. The API provides endpoints that allow clients to perform CRUD operations on four models: Patient, Doctor, Appointment, and Medical Record.
@@ -213,7 +215,7 @@ example response,
     }
     }
 
-    
+
 
 
  
