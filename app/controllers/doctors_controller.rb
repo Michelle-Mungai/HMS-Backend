@@ -30,8 +30,8 @@ class DoctorsController < ApplicationController
 
    #find a given Doctor object
     def show
-      @doctor = current_user.doctors
-      render json: @doctor
+      doctor = Doctor.find(params[:id])
+      render json: doctor
     end
 
   private

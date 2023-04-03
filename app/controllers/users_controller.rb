@@ -20,6 +20,9 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+    end
+
     # def generate_password_reset_token
     #     self.reset_password_token = SecureRandom.urlsafe_base64
     #     self.reset_password_sent_at = Time.now.utc
