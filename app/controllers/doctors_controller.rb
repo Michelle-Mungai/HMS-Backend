@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+
   #  before_action :authorize?
 
   # display all appointment

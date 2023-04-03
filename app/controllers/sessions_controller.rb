@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
 
 
     def destroy
-        return render json: {errors: ["User not found", "kindly log in"]}, status: :unauthorized unless session.include? :user_id
         session.delete :user_id
         render json: { message: "Goodbye!"}
     end
