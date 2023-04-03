@@ -21,6 +21,12 @@ class UsersController < ApplicationController
     end
 
     def update
+        user = User.find_by(id: session[:user_id])
+        user.update(user_params)
+        if user.valid?
+            render json: user
+        else
+            render json: { message: user.errors }, status: :unprocessable_entity
     end
 
     # def generate_password_reset_token
@@ -43,7 +49,7 @@ class UsersController < ApplicationController
 
 
     def user_params
-        params.permit(:username, :email, :password )
+        params.permit(:username, :email, :password, :options )
     end
 end
 
